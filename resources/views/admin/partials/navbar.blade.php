@@ -70,17 +70,24 @@
       </li>
       <li class="nav-item nav-profile dropdown">
         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-          <img src="admin/images/faces/face28.jpg" alt="profile"/>
+          @if(Auth::user()->avatar)
+            <img src="{{ asset('storage/' . Auth::user()->avatar) }}" alt="profile"/>
+          @else
+            <img src="{{ asset('admin/images/faces/default-avatar.jpg') }}" alt="profile"/>
+          @endif
         </a>
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-          <a class="dropdown-item">
+          <a class="dropdown-item" href="{{ route('profile.edit') }}">
             <i class="ti-settings text-primary"></i>
             Settings
           </a>
-          <a class="dropdown-item">
-            <i class="ti-power-off text-primary"></i>
-            Logout
-          </a>
+          <form action="{{ route('logout') }}" method="POST" class="d-inline">
+            @csrf
+            <button type="submit" class="dropdown-item">
+              <i class="ti-power-off text-primary"></i>
+              Logout
+            </button>
+          </form>
         </div>
       </li>
       <li class="nav-item nav-settings d-none d-lg-flex">

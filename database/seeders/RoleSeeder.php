@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -44,7 +45,8 @@ class RoleSeeder extends Seeder
 
       // Give all permissions to super-admin
       if ($role['name'] === 'super-admin') {
-        $createdRole->givePermissionTo('*');
+        $allPermissions = Permission::all();
+        $createdRole->syncPermissions($allPermissions);
       }
     }
   }

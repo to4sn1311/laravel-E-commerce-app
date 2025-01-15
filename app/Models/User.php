@@ -18,12 +18,15 @@ class User extends Authenticatable
    *
    * @var list<string>
    */
+  protected $table = 'users';
+  protected $connection = 'sqlite';
   protected $fillable = [
     'name',
     'email',
     'password',
     'phone',
     'address',
+    'avatar',
   ];
 
   /**

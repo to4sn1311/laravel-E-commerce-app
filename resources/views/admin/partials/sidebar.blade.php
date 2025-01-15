@@ -10,11 +10,13 @@
             <span class="menu-title">Role</span>
         </a>
     </li>
+    @can(['create-users', 'edit-users', 'delete-users'])
     <li class="nav-item {{ request()->routeIs('users.*') ? 'active' : '' }}">
-        <a class="nav-link" href="#">
-            <span class="menu-title">User</span>
-        </a>
+      <a class="nav-link" href="{{ route('users.index') }}">
+        <span class="menu-title">User</span>
+      </a>
     </li>
+    @endcan
     <li class="nav-item {{ request()->routeIs('products.*') ? 'active' : '' }}">
         <a class="nav-link" href="#">
             <span class="menu-title">Product</span>
